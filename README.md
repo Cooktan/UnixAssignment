@@ -1,7 +1,7 @@
- ##UnixAssignment
+##UnixAssignment
 #This files contains information regarding the assignment
 
-Code used to inspect fang_et_al_genotypes.txt 
+#Code used to inspect fang_et_al_genotypes.txt 
 
 head -n 2  fang_et_al_genotypes.txt
  awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt 
