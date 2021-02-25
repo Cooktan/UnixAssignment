@@ -1,8 +1,56 @@
-## Course Assignments
+ ##UnixAssignment
+#This files contains information regarding the assignment
 
-A description of files within this folder:
+Code used to inspect fang_et_al_genotypes.txt 
 
-* `UNIX_Assignment.md` and `UNIX_Assignment.pdf`: Instructions for the assignment
-* `UNIX_Assignment_Template.md` and `UNIX_Assignment_Template.pdf`: An example of what your Markdown file should look like when you submit your assignment, including some Markdown syntax that should be helpful for you. The pdf shows how this file is rendered using a tool such as "MacDown"
-* The two files `fang_et_al_genotypes.txt` and `snp_positions.txt` are data files you will be reformatting for the assignment
-* The `transpose.awk` script will be needed to transpose the data (see instructions in `UNIX_Assignment.md`)
+head -n 2  fang_et_al_genotypes.txt
+ awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt 
+ cat fang_et_al_genotypes.txt | cut -f 1-8 | column -t 
+ grep "ZMM" fang_et_al_genotypes.txt | cut -f 1-8 | column -t
+ cat fang_et_al_genotypes.txt | cut -f 1-8 | column -t|sort -k1,2
+ cat fang_et_al_genotypes.txt | cut -f 980-986 | column -t|sort -k1,2
+
+By inspecting the file I learned:
+    1. There is no header row
+    2. The first three columns contain in the order, ID#, location details, and group
+    3.The remaining columns contain SNP data (Nucleotides) 
+    4. The file is very messy
+ 
+ Code to inspect snp_position.txt
+
+head -n 1 snp_position.txt
+head -n 2 snp_position.txt
+tail -n 3 snp_position.txt
+cat snp_position.txt | cut -f 1-8 | column -t
+
+ By inspecting the file I learned:
+    1.There is a header row
+    2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
+    
+
+ Transpose fang_et_al
+    awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
+
+## Sorting
+  
+ grep "ZMM" fang_et_al_genotypes.txt | sort -k1,1 > sortedtransposedgeno.txt
+tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMM.txt
+join -1 1 -2 1 -a 1 sortedtransposedgeno.txt sortedsnpZMM.txt >joinedsnppositionandtransposed
+
+  c
+
+
+
+
+
+  #snp
+sort -k1,1 snp_position.txt > sortedsnpZMM.txt
+ 
+cat sortedsnpZMM.txt | cut -f 1-8 | column -t
+# Join the sorted snp_position.txt and sorted fang_et_el
+
+
+
+ 
+
+# From this I learned that this file is very messy
