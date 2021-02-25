@@ -36,9 +36,11 @@ cat snp_position.txt | cut -f 1-8 | column -t
 
 ## Sorting
  
- 
- head -n1 fang_et_al_genotypes.txt | grep "ZMM"  > ZMMfang.txt
-  awk -f transpose.awk ZMMfang.txt | sort -k1,1 > sorted_transposed_genotypes.txt
+ ###  Using Now
+ grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
+ head -n1 fang_et_al_genotypes.txt > header
+ cat header ZMMfang.txt >headerZMMfang.txt
+  awk -f transpose.awk headerZMMfang.txt | tail -n +4 | sort -k1,1 > sorted_transposed_genotypes.txt
 tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMM.txt
 join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
 
@@ -46,28 +48,28 @@ join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joined
    tail -n +4 transposed_genotypes.txt | sort -k1,1 > sortedtransposedgeno.txt
 tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMM.txt
 join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sortedtransposedgeno.txt >joinedsnppositionandtransposed
-
-
 $ wc -l sortedtransposedgeno.txt sortedsnpZMM.txt joinedsnppositionandtransposed
       983 sortedtransposedgeno.txt
      983 sortedsnpZMM.txt
      983 joinedsnppositionandtransposed
     2949 total
 
-#Chromosome Fil
+#Chromosome Files
+
+awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome1_ZMM
+awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMM
+awk '$3 =3 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMM
+awk '$3 =4 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome4_ZMM
+awk '$3 =5 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome5_ZMM
+awk '$3 =6 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome6_ZMM
+awk '$3 =7 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome7_ZMM
+awk '$3 =8 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome8_ZMM
+awk '$3 =9 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome9_ZMM
+awk '$3 = 10{print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome10_ZMM
+
+* Since the missing nucleotides are already ? we dont have to do anything
+** Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMM
 
 
 
 
-
-  #snp
-sort -k1,1 snp_position.txt > sortedsnpZMM.txt
- 
-cat sortedsnpZMM.txt | cut -f 1-8 | column -t
-# Join the sorted snp_position.txt and sorted fang_et_el
-
-
-
- 
-
-# From this I learned that this file is very messy
