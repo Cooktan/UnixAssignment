@@ -35,7 +35,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
     2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
     
 
-# Sorting (MAIZE):
+# Sorting based on ZMM (MAIZE):
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
@@ -47,13 +47,13 @@ cat snp_position.txt | cut -f 1-8 | column -t
 
 
 
-## By inspecting with:
+## By inspecting with
 cat <filename> | cut -f 1-8 | column -t
  I can determine which column to isolate
     
 # Files
 
-## Maize files with ? for missing numbers:
+## Separated maize chromosome files with ? for missing numbers:
 
 1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome1_ZMM
 2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r> Chromosome2_ZMM
@@ -73,7 +73,7 @@ Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZM
 Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
 
 
-## Maize files with - for missing numbers
+## Separated maize chromosome files with - for missing numbers
 
 1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome1_ZMM-
 2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome2_ZMM-
@@ -88,19 +88,19 @@ Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZM
 
 cut -c 1-100 < Chromosome1_ZMM-
 
-## Maize unknown location File
+## Maize unknown chromosome location File
 awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed > unknownposition_ZMM
 ~ Check-over:
 * cut -c 1-100 < unknownposition_ZMM
 
-## Maize multiple Chromosome locations
+## Maize multiple chromosome locations file
 awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multipleposition_ZMM
 
 ~ Check-over:
 * cut -c 1-100 < multipleposition_ZMM
 
 
-# Sorting (Teosinte)
+# Sorting based on ZMP (Teosinte)
 
 1. grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
 2. head -n1 fang_et_al_genotypes.txt > headerZMP
@@ -111,9 +111,7 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 
 
 
-#### REDO SORTING!!
-
-## Teosinte files with ? for missing numbers
+## Sorted teosinte chromosme files with ? for missing numbers
 1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome1_ZMP
 2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome2_ZMP
 3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome3_ZMP
@@ -131,7 +129,7 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 * Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMP
 * Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMP
 
-## Teosinte files with - for missing numbers
+## Sorted teosinte chromosome files with - for missing numbers
 
 1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome1_ZMP-
 2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome2_ZMP-
@@ -145,13 +143,13 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome10_ZMP-
 
 
-## Maize unknown location File
+## Maize unknown chromosome location file
 awk '$4 ="unknown" {print $0}' ZMPjoinedsnppositionandtransposed > unknownposition_ZMP
 
 ~ Check-over:
 * cut -c 1-100 < unknownposition_ZMP
 
-## Maize multiple Chromosome locations
+## Maize multiple chromosome locations file
 awk '$3 ="multiple" {print $0}' ZMPjoinedsnppositionandtransposed > multipleposition_ZMP
 
 ~ Check-over:
