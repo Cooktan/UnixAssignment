@@ -61,9 +61,9 @@ cat snp_position.txt | cut -f 1-8 | column -t
 10. awk '$3 =10 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome10_ZMM
 *Since the missing nucleotides are already ? we dont have to do anything
 
-~ Just a check
-*Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMM
-*Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
+~ Just a check: Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMM
+
+   Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
 
 # Maize files with - for missing numbers
 
