@@ -35,7 +35,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
     2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
     
 
-# Sorting based on ZMM (MAIZE), adding the header, transpose, and join:
+# Sorting based on ZMM (MAIZE), adding the header, transpose, and join snp_position.txt and fang_et_el.txt:
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
