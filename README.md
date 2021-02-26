@@ -95,6 +95,7 @@ awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed > unknownposition_
 
 ## Maize multiple Chromosome locations
 awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multipleposition_ZMM
+
 ~ Check-over:
 * cut -c 1-100 < multipleposition_ZMM
 
@@ -125,7 +126,7 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome10_ZMP
 * Since the missing nucleotides are already ? we dont have to do anything
 
-~ Just a check
+~ Just a check:
 *Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMP
 *Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMP
 
