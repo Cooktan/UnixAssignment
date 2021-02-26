@@ -58,7 +58,7 @@ cat <filename> | cut -f 1-8 | column -t
 
 ## Maize files with ? for missing numbers:
 
-1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k1,4n  > Chromosome1_ZMM
+1.sort -k1,4 joinedsnppositionandtransposed|  awk '$3 =1 {print $0}'  > Chromosome1_ZMM
 2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMM
 3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMM
 4. awk '$3 =4 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome4_ZMM
