@@ -38,7 +38,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
  Transpose fang_et_al
     awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 
-# Sorting:
+# Sorting (MAIZE):
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
@@ -92,17 +92,17 @@ Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZM
 cut -c 1-100 < Chromosome1_ZMM-
 
 ## Maize unknown location File
-awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> unknownposition_ZMM
+awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed > unknownposition_ZMM
 ~ Check-over:
 * cut -c 1-100 < unknownposition_ZMM
 
 ## Maize multiple Chromosome locations
-awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> multipleposition_ZMM
+awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multipleposition_ZMM
 ~ Check-over:
 * cut -c 1-100 < multipleposition_ZMM
 
 
-## Teosinte Files
+# Sorting (Teosinte)
 
 1. grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
 2. head -n1 fang_et_al_genotypes.txt > headerZMP
@@ -148,3 +148,14 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> 
 8. awk '$3 =8 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome8_ZMP-
 9. awk '$3 =9 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome9_ZMP-
 10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome10_ZMP-
+
+
+## Maize unknown location File
+awk '$4 ="unknown" {print $0}' ZMPjoinedsnppositionandtransposed > unknownposition_ZMP
+~ Check-over:
+* cut -c 1-100 < unknownposition_ZMP
+
+## Maize multiple Chromosome locations
+awk '$3 ="multiple" {print $0}' ZMPjoinedsnppositionandtransposed > multipleposition_ZMP
+~ Check-over:
+* cut -c 1-100 < multipleposition_ZMP
