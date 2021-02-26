@@ -5,7 +5,7 @@
 
 ## This files contains information regarding the assignment
 
-## Code used to inspect fang_et_al_genotypes.txt 
+## Code used to inspect fang_et_al_genotypes.txt:
 
 1. $ head -n 2  fang_et_al_genotypes.txt
  2. $ awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt 
@@ -21,7 +21,7 @@
     3.The remaining columns contain SNP data (Nucleotides) 
     4. The file is very messy
  
- ## Code to inspect snp_position.txt
+ ## Code to inspect snp_position.txt:
 
 head -n 1 snp_position.txt
 head -n 2 snp_position.txt
@@ -37,7 +37,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
  Transpose fang_et_al
     awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 
-### Sorting
+### Sorting:
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
@@ -48,10 +48,14 @@ cat snp_position.txt | cut -f 1-8 | column -t
 6. join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
 
 
+# By inspecting with:
+cat <filename> | cut -f 1-8 | column -t
+ I can determine which column to isolate
     
 #### REDO SORTING!!
-## Chromosome Files
-# Maize files with ? for missing numbers
+## Chromosome Files:
+## Maize files with ? for missing numbers:
+
 1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k1,4n  > Chromosome1_ZMM
 2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMM
 3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMM
@@ -62,11 +66,23 @@ cat snp_position.txt | cut -f 1-8 | column -t
 8. awk '$3 =8 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome8_ZMM
 9. awk '$3 =9 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome9_ZMM
 10. awk '$3 =10 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome10_ZMM
-*Since the missing nucleotides are already ? we dont have to do anything
 
-~ Just a check: Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMM
+rm*Since the missing nucleotides are already ? we dont have to do anything
 
-   Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
+~ Just a check: 
+Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMM
+Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
+
+
+# Unknown File
+awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> unknownposition_ZMM
+~ Check-over:
+* cut -c 1-100 < unknownposition_ZMM
+
+# Multiple Chromosome locations
+awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> multipleposition_ZMM
+~ Check-over:
+* cut -c 1-100 < multipleposition_ZMM
 
 # Maize files with - for missing numbers
 
@@ -85,8 +101,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
 cut -c 1-100 < Chromosome1_ZMM-
 
 
-### Do IT all over again with Teosinte Data
-
+## Teosinte Files
 
 1. grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
 2. head -n1 fang_et_al_genotypes.txt > headerZMP
