@@ -127,8 +127,9 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 * Since the missing nucleotides are already ? we dont have to do anything
 
 ~ Just a check:
-*Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMP
-*Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMP
+
+* Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMP
+* Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMP
 
 ## Teosinte files with - for missing numbers
 
