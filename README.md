@@ -5,7 +5,7 @@
 
 ## This files contains information regarding the assignment
 
-## Code used to inspect fang_et_al_genotypes.txt:
+# Code used to inspect fang_et_al_genotypes.txt:
 
 1. $ head -n 2  fang_et_al_genotypes.txt
  2. $ awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt 
@@ -37,7 +37,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
  Transpose fang_et_al
     awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 
-### Sorting:
+# Sorting:
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
@@ -53,7 +53,8 @@ cat <filename> | cut -f 1-8 | column -t
  I can determine which column to isolate
     
 #### REDO SORTING!!
-## Chromosome Files:
+# Chromosome Files:
+
 ## Maize files with ? for missing numbers:
 
 1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k1,4n  > Chromosome1_ZMM
@@ -74,17 +75,17 @@ Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZM
 Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMM
 
 
-# Unknown File
+## Unknown File
 awk '$4 ="unknown" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> unknownposition_ZMM
 ~ Check-over:
 * cut -c 1-100 < unknownposition_ZMM
 
-# Multiple Chromosome locations
+## Multiple Chromosome locations
 awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> multipleposition_ZMM
 ~ Check-over:
 * cut -c 1-100 < multipleposition_ZMM
 
-# Maize files with - for missing numbers
+## Maize files with - for missing numbers
 
 1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4n  > Chromosome1_ZMM-
 2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome2_ZMM-
@@ -118,7 +119,7 @@ cut -c 1-100 < Chromosome1_ZMM-
 
 #### REDO SORTING!!
 
-# Teosinte files with ? for missing numbers
+## Teosinte files with ? for missing numbers
 1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4n  > Chromosome1_ZMP
 2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMP
 3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMP
