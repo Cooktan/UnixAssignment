@@ -34,9 +34,6 @@ cat snp_position.txt | cut -f 1-8 | column -t
     1.There is a header row
     2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
     
-# Transpose:
- Transpose fang_et_al
-    awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 
 # Sorting (MAIZE):
  
@@ -49,25 +46,25 @@ cat snp_position.txt | cut -f 1-8 | column -t
 6. join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
 
 
+
 ## By inspecting with:
 cat <filename> | cut -f 1-8 | column -t
  I can determine which column to isolate
     
-#### REDO SORTING!!
 # Files
 
 ## Maize files with ? for missing numbers:
 
-1.sort -k1,4 joinedsnppositionandtransposed|  awk '$3 =1 {print $0}'  > Chromosome1_ZMM
-2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMM
-3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMM
-4. awk '$3 =4 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r > Chromosome4_ZMM
-5. awk '$3 =5 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome5_ZMM
-6. awk '$3 =6 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome6_ZMM
-7. awk '$3 =7 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome7_ZMM
-8. awk '$3 =8 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome8_ZMM
-9. awk '$3 =9 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome9_ZMM
-10. awk '$3 =10 {print $0}' joinedsnppositionandtransposed | sort -k1,4 -r> Chromosome10_ZMM
+1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome1_ZMM
+2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r> Chromosome2_ZMM
+3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome3_ZMM
+4. awk '$3 =4 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome4_ZMM
+5. awk '$3 =5 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome5_ZMM
+6. awk '$3 =6 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome6_ZMM
+7. awk '$3 =7 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome7_ZMM
+8. awk '$3 =8 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome8_ZMM
+9. awk '$3 =9 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome9_ZMM
+10. awk '$3 =10 {print $0}' joinedsnppositionandtransposed | sort -k4,4n -r > Chromosome10_ZMM
 
 *Since the missing nucleotides are already ? we dont have to do anything
 
@@ -78,16 +75,16 @@ Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZM
 
 ## Maize files with - for missing numbers
 
-1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4n  > Chromosome1_ZMM-
-2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome2_ZMM-
-3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome3_ZMM-
-4. awk '$3 =4 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome4_ZMM-
-5. awk '$3 =5 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome5_ZMM-
-6. awk '$3 =6 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome6_ZMM-
-7. awk '$3 =7 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome7_ZMM-
-8. awk '$3 =8 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome8_ZMM-
-9. awk '$3 =9 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome9_ZMM-
-10. awk '$3 = 10{print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome10_ZMM-
+1. awk '$3 =1 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome1_ZMM-
+2. awk '$3 =2 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome2_ZMM-
+3. awk '$3 =3 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome3_ZMM-
+4. awk '$3 =4 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome4_ZMM-
+5. awk '$3 =5 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome5_ZMM-
+6. awk '$3 =6 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome6_ZMM-
+7. awk '$3 =7 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome7_ZMM-
+8. awk '$3 =8 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome8_ZMM-
+9. awk '$3 =9 {print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome9_ZMM-
+10. awk '$3 = 10{print $0}' joinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome10_ZMM-
 
 cut -c 1-100 < Chromosome1_ZMM-
 
@@ -111,25 +108,21 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 5. tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMP.txt
 6. join -1 1 -2 1 -t $'\t' sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt >ZMPjoinedsnppositionandtransposed
 
- $ wc -l sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt ZMPjoinedsnppositionandtransposed
-    983 sortedsnpZMP.txt
-    983 ZMP_sorted_transposed_genotypes.txt
-    983 ZMPjoinedsnppositionandtransposed
-   2949 total
+
 
 #### REDO SORTING!!
 
 ## Teosinte files with ? for missing numbers
-1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4n  > Chromosome1_ZMP
-2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r > Chromosome2_ZMP
-3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome3_ZMP
-4. awk '$3 =4 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r > Chromosome4_ZMP
-5. awk '$3 =5 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome5_ZMP
-6. awk '$3 =6 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome6_ZMP
-7. awk '$3 =7 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome7_ZMP
-8. awk '$3 =8 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome8_ZMP
-9. awk '$3 =9 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome9_ZMP
-10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k1,4 -r> Chromosome10_ZMP
+1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome1_ZMP
+2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome2_ZMP
+3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome3_ZMP
+4. awk '$3 =4 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome4_ZMP
+5. awk '$3 =5 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome5_ZMP
+6. awk '$3 =6 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome6_ZMP
+7. awk '$3 =7 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome7_ZMP
+8. awk '$3 =8 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome8_ZMP
+9. awk '$3 =9 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome9_ZMP
+10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed | sort -k4,4n -r > Chromosome10_ZMP
 * Since the missing nucleotides are already ? we dont have to do anything
 
 ~ Just a check
@@ -138,16 +131,16 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 
 ## Teosinte files with - for missing numbers
 
-1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4n  > Chromosome1_ZMP-
-2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome2_ZMP-
-3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome3_ZMP-
-4. awk '$3 =4 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome4_ZMP-
-5. awk '$3 =5 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome5_ZMP-
-6. awk '$3 =6 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome6_ZMP-
-7. awk '$3 =7 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome7_ZMP-
-8. awk '$3 =8 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome8_ZMP-
-9. awk '$3 =9 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome9_ZMP-
-10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r> Chromosome10_ZMP-
+1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome1_ZMP-
+2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome2_ZMP-
+3. awk '$3 =3 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome3_ZMP-
+4. awk '$3 =4 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n  > Chromosome4_ZMP-
+5. awk '$3 =5 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome5_ZMP-
+6. awk '$3 =6 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome6_ZMP-
+7. awk '$3 =7 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome7_ZMP-
+8. awk '$3 =8 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome8_ZMP-
+9. awk '$3 =9 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome9_ZMP-
+10. awk '$3 =10 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k4,4n > Chromosome10_ZMP-
 
 
 ## Maize unknown location File
