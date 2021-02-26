@@ -5,7 +5,8 @@
 
 ## This files contains information regarding the assignment
 
-# Code used to inspect fang_et_al_genotypes.txt:
+# Inspect
+## Code used to inspect fang_et_al_genotypes.txt:
 
 1. $ head -n 2  fang_et_al_genotypes.txt
  2. $ awk -F "\t" '{print NF; exit}' fang_et_al_genotypes.txt 
@@ -33,7 +34,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
     1.There is a header row
     2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
     
-
+# Transpose:
  Transpose fang_et_al
     awk -f transpose.awk fang_et_al_genotypes.txt > transposed_genotypes.txt
 
@@ -48,12 +49,12 @@ cat snp_position.txt | cut -f 1-8 | column -t
 6. join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
 
 
-# By inspecting with:
+## By inspecting with:
 cat <filename> | cut -f 1-8 | column -t
  I can determine which column to isolate
     
 #### REDO SORTING!!
-# Chromosome Files:
+# Files
 
 ## Maize files with ? for missing numbers:
 
@@ -136,7 +137,7 @@ cut -c 1-100 < Chromosome1_ZMM-
 *Inspect to make sure Chr. 1 was really collected $ cut -c 1-100 < Chromosome1_ZMP
 *Inspect to make sure Chr. 8 was really collected $ cut -c 1-100 < Chromosome8_ZMP
 
-# Maize files with - for missing numbers
+## Teosinte files with - for missing numbers
 
 1. awk '$3 =1 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4n  > Chromosome1_ZMP-
 2. awk '$3 =2 {print $0}' ZMPjoinedsnppositionandtransposed| sed 's/?/-/g' | sort -k1,4 -r > Chromosome2_ZMP-
