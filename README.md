@@ -147,10 +147,12 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 
 ## Maize unknown location File
 awk '$4 ="unknown" {print $0}' ZMPjoinedsnppositionandtransposed > unknownposition_ZMP
+
 ~ Check-over:
 * cut -c 1-100 < unknownposition_ZMP
 
 ## Maize multiple Chromosome locations
 awk '$3 ="multiple" {print $0}' ZMPjoinedsnppositionandtransposed > multipleposition_ZMP
+
 ~ Check-over:
 * cut -c 1-100 < multipleposition_ZMP
