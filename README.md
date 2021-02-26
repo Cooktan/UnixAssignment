@@ -37,12 +37,12 @@ cat snp_position.txt | cut -f 1-8 | column -t
 ### Sorting
  
  
- grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
- head -n1 fang_et_al_genotypes.txt > header
- cat header ZMMfang.txt >headerZMMfang.txt
-  awk -f transpose.awk headerZMMfang.txt | tail -n +4 | sort -k1,1 > sorted_transposed_genotypes.txt
-tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMM.txt
-join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
+1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
+2.  head -n1 fang_et_al_genotypes.txt > header
+3. cat header ZMMfang.txt >headerZMMfang.txt
+4. awk -f transpose.awk headerZMMfang.txt | tail -n +4 | sort -k1,1 > sorted_transposed_genotypes.txt
+5. tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMM.txt
+6. join -1 1 -2 1 -t $'\t' sortedsnpZMM.txt sorted_transposed_genotypes.txt >joinedsnppositionandtransposed
 
 
     
@@ -84,15 +84,15 @@ cut -c 1-100 < Chromosome1_ZMM-
 
 ### Do IT all over again with Teosinte Data
 
-###  Using Now
- grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
- head -n1 fang_et_al_genotypes.txt > headerZMP
- cat headerZMP ZMPfang.txt >headerZMPfang.txt
-  awk -f transpose.awk headerZMPfang.txt | tail -n +4 | sort -k1,1 > ZMP_sorted_transposed_genotypes.txt
-tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMP.txt
-join -1 1 -2 1 -t $'\t' sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt >ZMPjoinedsnppositionandtransposed
 
- wc -l sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt ZMPjoinedsnppositionandtransposed
+1. grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
+2. head -n1 fang_et_al_genotypes.txt > headerZMP
+3. cat headerZMP ZMPfang.txt >headerZMPfang.txt
+4. awk -f transpose.awk headerZMPfang.txt | tail -n +4 | sort -k1,1 > ZMP_sorted_transposed_genotypes.txt
+5. tail -n +2 snp_position.txt | sort -k1,1 > sortedsnpZMP.txt
+6. join -1 1 -2 1 -t $'\t' sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt >ZMPjoinedsnppositionandtransposed
+
+ $ wc -l sortedsnpZMP.txt ZMP_sorted_transposed_genotypes.txt ZMPjoinedsnppositionandtransposed
     983 sortedsnpZMP.txt
     983 ZMP_sorted_transposed_genotypes.txt
     983 ZMPjoinedsnppositionandtransposed
