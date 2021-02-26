@@ -35,7 +35,7 @@ cat snp_position.txt | cut -f 1-8 | column -t
     2. The first three columns contain in the order, ID#, CDV Mark ID, and chromosome
     
 
-# Sorting based on ZMM (MAIZE):
+# Sorting based on ZMM (MAIZE), adding the header, transpose, and join:
  
  
 1. grep "ZMM" fang_et_al_genotypes.txt > ZMMfang.txt
@@ -100,7 +100,7 @@ awk '$3 ="multiple" {print $0}' joinedsnppositionandtransposed > multiplepositio
 * cut -c 1-100 < multipleposition_ZMM
 
 
-# Sorting based on ZMP (Teosinte)
+# Sorting based on ZMP (Teosinte), adding the header, transpose, and join:
 
 1. grep "ZMP" fang_et_al_genotypes.txt > ZMPfang.txt
 2. head -n1 fang_et_al_genotypes.txt > headerZMP
